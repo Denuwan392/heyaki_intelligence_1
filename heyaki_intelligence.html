@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heyaki Intelligence Machines</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6B46C1 0%, #4299E1 50%, #38B2AC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(26, 32, 44, 0.8) 100%), 
+                        url('https://i.pinimg.com/1200x/52/39/90/5239903a19dce06bb3bab8bd75cb2c0a.jpg') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(66, 153, 225, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 70%, rgba(56, 178, 172, 0.1) 0%, transparent 50%);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s ease-out;
+        }
+        
+        .btn-hover:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">
+                <span class="gradient-text">Heyaki</span> <span class="text-gray-300">Intelligence</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-white transition duration-300">Home</a>
+                <a href="#vision" class="text-gray-300 hover:text-white transition duration-300">About</a>
+                <a href="#services" class="text-gray-300 hover:text-white transition duration-300">Services</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-300">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 z-40 flex flex-col items-center justify-center space-y-8 transform translate-x-full transition-transform duration-300">
+        <button id="close-menu" class="absolute top-6 right-6 text-gray-300">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="#home" class="text-2xl text-gray-300 hover:text-white transition duration-300">Home</a>
+        <a href="#vision" class="text-2xl text-gray-300 hover:text-white transition duration-300">About</a>
+        <a href="#services" class="text-2xl text-gray-300 hover:text-white transition duration-300">Services</a>
+        <a href="#contact" class="text-2xl text-gray-300 hover:text-white transition duration-300">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Transforming Industries with 
+                <span class="block gradient-text">Intelligent Machines</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-4xl mx-auto">
+                From business automation to agriculture AI — we design AI solutions that create real impact.
+            </p>
+            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" 
+                    class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 btn-hover shadow-lg">
+                Book Free Consultation
+            </button>
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-1/4 left-10 text-purple-400 opacity-20 floating">
+            <i class="fas fa-microchip text-6xl"></i>
+        </div>
+        <div class="absolute top-1/3 right-10 text-blue-400 opacity-20 floating" style="animation-delay: 1s">
+            <i class="fas fa-robot text-6xl"></i>
+        </div>
+        <div class="absolute bottom-1/4 left-1/4 text-teal-400 opacity-20 floating" style="animation-delay: 0.5s">
+            <i class="fas fa-chart-line text-6xl"></i>
+        </div>
+        <div class="absolute bottom-1/3 right-1/3 text-purple-400 opacity-20 floating" style="animation-delay: 1.5s">
+            <i class="fas fa-seedling text-6xl"></i>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Vision</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto text-center text-xl text-gray-300 reveal">
+                We believe in a future where intelligent machines work alongside humans to solve complex challenges across industries. At Heyaki, we're not just building AI — we're shaping the future of work, agriculture, and commerce with ethical, powerful, and transformative technology.
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Domains We Serve</h2>
+                <p class="text-xl text-gray-400">Comprehensive AI solutions for modern business challenges</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-2xl text-center card-hover reveal hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 transition-all duration-300">
+                    <div class="text-5xl text-purple-400 mb-6">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Business Automation</h3>
+                    <p class="text-gray-400">Streamline operations, reduce costs, and increase efficiency with intelligent automation systems that learn and adapt.</p>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-2xl text-center card-hover reveal hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 transition-all duration-300">
+                    <div class="text-5xl text-blue-400 mb-6">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Robotics Solutions</h3>
+                    <p class="text-gray-400">Advanced robotics integrated with AI for manufacturing, logistics, and specialized industrial applications.</p>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-2xl text-center card-hover reveal hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 transition-all duration-300">
+                    <div class="text-5xl text-teal-400 mb-6">
+                        <i class="fas fa-chart-network"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">AI for Business Intelligence</h3>
+                    <p class="text-gray-400">Transform your data into actionable insights with predictive analytics and intelligent decision support systems.</p>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="bg-gray-800 p-8 rounded-2xl text-center card-hover reveal hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 transition-all duration-300">
+                    <div class="text-5xl text-green-400 mb-6">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">AI in Agriculture</h3>
+                    <p class="text-gray-400">Precision farming, crop monitoring, and yield optimization through computer vision and IoT integration.</p>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="bg-gray-800 p-8 rounded-2xl text-center card-hover reveal hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 transition-all duration-300">
+                    <div class="text-5xl text-orange-400 mb-6">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">AI in Retail</h3>
+                    <p class="text-gray-400">Personalized customer experiences, inventory optimization, and intelligent supply chain management.</p>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="bg-gray-800 p-8 rounded-2xl text-center card-hover reveal hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 transition-all duration-300">
+                    <div class="text-5xl text-pink-400 mb-6">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Custom AI Solutions</h3>
+                    <p class="text-gray-400">Tailored AI systems designed specifically for your unique business challenges and opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 reveal">
+                    <img src="https://i.pinimg.com/736x/49/c9/02/49c9021a43bae9d4bc55ba3caacb9fdc.jpg" alt="AI Technology" class="rounded-2xl shadow-2xl">
+                </div>
+                <div class="lg:w-1/2 lg:pl-16">
+                    <div class="reveal">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Why Choose Heyaki?</h2>
+                        <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mb-8"></div>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start reveal">
+                            <div class="text-3xl text-purple-400 mr-4 mt-1">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Innovation at Core</h3>
+                                <p class="text-gray-300">We stay at the forefront of AI research, bringing cutting-edge solutions to your business challenges.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start reveal">
+                            <div class="text-3xl text-blue-400 mr-4 mt-1">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Proven Results</h3>
+                                <p class="text-gray-300">Our clients see measurable improvements in efficiency, cost reduction, and revenue growth.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start reveal">
+                            <div class="text-3xl text-teal-400 mr-4 mt-1">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Futuristic Approach</h3>
+                                <p class="text-gray-300">We don't just implement AI—we design future-ready systems that evolve with your business.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Impact</h2>
+                <p class="text-xl text-gray-400">Real results from our AI implementations</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-gray-800 rounded-2xl p-8 md:p-12 reveal">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold mb-4">Agricultural Yield Optimization</h3>
+                    <p class="text-gray-400">AI-powered precision farming for a leading agricultural cooperative</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6 bg-gray-700 rounded-xl">
+                        <div class="text-4xl font-bold text-green-400 mb-2">+32%</div>
+                        <div class="text-gray-300">Yield Increase</div>
+                    </div>
+                    <div class="p-6 bg-gray-700 rounded-xl">
+                        <div class="text-4xl font-bold text-blue-400 mb-2">-45%</div>
+                        <div class="text-gray-300">Water Usage</div>
+                    </div>
+                    <div class="p-6 bg-gray-700 rounded-xl">
+                        <div class="text-4xl font-bold text-purple-400 mb-2">-28%</div>
+                        <div class="text-gray-300">Operational Costs</div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-300">By implementing our AI-driven crop monitoring and irrigation system, this agricultural cooperative achieved significant improvements in yield while reducing resource consumption and operational expenses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">What Our Clients Say</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-700 p-8 rounded-2xl reveal card-hover">
+                    <div class="text-4xl text-yellow-400 mb-4">"</div>
+                    <p class="text-gray-300 mb-6">Heyaki's AI automation system transformed our manufacturing process. We've reduced production errors by 60% and increased output by 40% without additional staffing.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">SJ</div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-400 text-sm">COO, Precision Manufacturing Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-700 p-8 rounded-2xl reveal card-hover">
+                    <div class="text-4xl text-yellow-400 mb-4">"</div>
+                    <p class="text-gray-300 mb-6">The business intelligence platform from Heyaki gave us insights we never thought possible. Our decision-making is now data-driven and significantly more accurate.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold mr-4">MR</div>
+                        <div>
+                            <h4 class="font-bold">Michael Rodriguez</h4>
+                            <p class="text-gray-400 text-sm">CFO, Global Retail Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-700 p-8 rounded-2xl reveal card-hover">
+                    <div class="text-4xl text-yellow-400 mb-4">"</div>
+                    <p class="text-gray-300 mb-6">As a sustainable farm, we were skeptical about technology. Heyaki's agricultural AI not only increased our yields but helped us reduce water usage by 50%.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold mr-4">TE</div>
+                        <div>
+                            <h4 class="font-bold">Thomas Evans</h4>
+                            <p class="text-gray-400 text-sm">Owner, Green Valley Farms</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Book Your Free Consultation</h2>
+                    <p class="text-xl text-gray-400">Discover how Heyaki Intelligence Machines can transform your business with AI</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6"></div>
+                </div>
+                
+                <form class="bg-gray-800 p-8 md:p-12 rounded-2xl shadow-xl reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-300">Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 text-white transition duration-300" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-gray-300">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 text-white transition duration-300" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold mb-2 text-gray-300">Business/Need</label>
+                        <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 text-white transition duration-300">
+                            <option value="">Select your industry or need</option>
+                            <option value="business-automation">Business Automation</option>
+                            <option value="robotics">Robotics Solutions</option>
+                            <option value="business-intelligence">AI for Business Intelligence</option>
+                            <option value="agriculture">AI in Agriculture</option>
+                            <option value="retail">AI in Retail</option>
+                            <option value="custom">Custom AI Solutions</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold mb-2 text-gray-300">Message</label>
+                        <textarea rows="5" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 text-white transition duration-300" placeholder="Tell us about your business challenges and AI goals..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 btn-hover shadow-lg">
+                        Request Consultation
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-2xl font-bold mb-4 md:mb-0">
+                    <span class="gradient-text">Heyaki</span> <span class="text-gray-300">Intelligence</span>
+                </div>
+                
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+                
+                <div class="text-gray-400 text-sm">
+                    © 2023 Heyaki Intelligence Machines. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-gray-900', 'bg-opacity-90', 'backdrop-blur-sm', 'shadow-lg');
+                navbar.classList.remove('transparent');
+            } else {
+                navbar.classList.remove('bg-gray-900', 'bg-opacity-90', 'backdrop-blur-sm', 'shadow-lg');
+                navbar.classList.add('transparent');
+            }
+            
+            // Reveal animations
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('translate-x-full');
+        });
+        
+        document.getElementById('close-menu').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('translate-x-full');
+        });
+        
+        // Close mobile menu when clicking links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('translate-x-full');
+            });
+        });
+        
+        // Initialize reveal animations on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(element => {
+                    element.classList.add('active');
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
